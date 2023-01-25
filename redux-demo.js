@@ -3,11 +3,11 @@ const redux=require('redux');
 const reducer=(state={counter:0},action)=>{
     if(action.type==='add'){
          return{
-        counter:state.counter+1
+        counter:state.counter+action.value
     }}
     else if(action.type==='dec') {
           return{
-        counter:state.counter-1
+        counter:state.counter-action.value
     }
     }
 
@@ -28,10 +28,9 @@ const subscriber=()=>{
   console.log(latest)
 }
 store.subscribe(subscriber);
-store.dispatch({type:"add"})
-store.dispatch({type:"add"})
-store.dispatch({type:"add"})
-store.dispatch({type:"add"})
-store.dispatch({type:"add"})
-store.dispatch({type:"dec"})
+store.dispatch({type:"add",value:2})
+store.dispatch({type:"add",value:2})
+store.dispatch({type:"add",value:2})
+store.dispatch({type:"add",value:2})
+store.dispatch({type:"dec",value:2})
 
