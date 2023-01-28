@@ -1,27 +1,19 @@
-import Counter from './components/Counter';
-import Auth from './components/Auth';
-import Header from './components/Header';
-import UserProfile from './components/UserProfile';
-
-import { useSelector } from 'react-redux';
-
-
+import Cart from './components/Cart/Cart';
+import Layout from './components/Layout/Layout';
+import Products from './components/Shop/Products';
+import { CartActions } from './store/Reduxx'
+import { useDispatch,useSelector } from 'react-redux';
 
 
 function App() {
-  const isAuth=useSelector(state=>state.auth.isAuthnticated);
-  console.log("auth chk",isAuth)
- 
+  const dispatch=useDispatch();
+  const isTrue=useSelector(state=>state.show.cart) 
+  console.log(isTrue)
   return (
-    <>
-    <Header />
-    {!isAuth &&<Auth />}
-    {isAuth &&<UserProfile />}
-
-
-    <Counter />
-    </>
-    
+    <Layout>
+     {isTrue &&  <Cart />}
+      <Products />
+    </Layout>
   );
 }
 
