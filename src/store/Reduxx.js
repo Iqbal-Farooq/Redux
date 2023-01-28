@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 
-const initialThemeState={
+const CARTSTATE={
 
   
   cart:false,
@@ -13,8 +13,8 @@ const initialThemeState={
 
 }
 const CartSLice = createSlice({
-  name:'theme',
-  initialState:initialThemeState,
+  name:'cart',
+  initialState:CARTSTATE,
   reducers:{
   
     cartstate(state,action){
@@ -25,14 +25,106 @@ const CartSLice = createSlice({
   }
 })
 
+
+// const addSLice = createSlice({
+//   name:"addingitems",
+//     initialstate:{
+//         items:[],
+//         quantity:0,
+//     } ,
+//   reducers:{
+    
+//      addItems(state,action){
+        //     const newitem=action.payload;
+        //    const existing= state.items.find(item=>item.id===newitem.id)
+        //    if(!existing){
+        //     state.items.push({
+        //         itemid:newitem.id,
+        //         price:newitem.price,
+        //         quantity:1,
+        //     })
+        //    }else{
+        //     existing.quantity++
+        //    }
+
+//         },
+//         removeItems(state,action){
+            // const id=action.payload;
+            // const existing= state.items.find(item=>item.id===id)
+            // if(existing.quantity===1){
+            //     state.items=state.items.filter(item=>item.id !== id);
+            // }
+            // else{
+            //     existing.quantity--;
+            // }
+
+//         }
+  
+    
+  
+//   }
+// });
+
+const initialsattae={
+
+  items:[],
+ quantity :0,
+ 
+
+}
+const Arrayslice = createSlice({
+  name:'theme',
+  initialState:initialsattae,
+  reducers:{
+    addItems(state,action){
+        state.quantity++;
+                   const newitem=action.payload;
+           const existing= state.items.find(item=>item.id===newitem.id)
+           if(!existing){
+            state.items.push({
+                id:newitem.id,
+                price:newitem.price,
+                quantity:1,
+                title:newitem.title,
+                total:newitem.price ,
+            })
+           }else{
+             existing.quantity++;
+             existing.total=existing.total + newitem.price ;
+
+            }
+     
+    },
+    removeItems(state,action){
+        state.quantity--;
+     const id=action.payload;
+            const existing= state.items.find(item=>item.id===id)
+            if(existing.quantity===1){
+                state.items=state.items.filter(item=>item.id !== id);
+            }
+            else{
+                existing.quantity--;
+                existing.total=existing.total-existing.price ;
+
+            }
+    },
+   
+  }
+})
+
+
+
+
 const store = configureStore({
   reducer: {
+    cartitems:Arrayslice.reducer,
     show:CartSLice.reducer,
-
+   
       
      },
 });
 
 
 export const cartActions=CartSLice.actions;
+export const ArrayActions=Arrayslice.actions;
 export default store;
