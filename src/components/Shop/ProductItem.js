@@ -1,14 +1,17 @@
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
 import { ArrayActions } from '../../store/Reduxx';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 const ProductItem = (props) => {
   const { title, price, description,id } = props;
   const dispatch=useDispatch();
+  // const cart=useSelector(state=>state.show)
 
 
   const ADDINGDATA=()=>{
+    
+
 
     dispatch(ArrayActions.addItems({
       id,

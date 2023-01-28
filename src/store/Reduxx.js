@@ -2,6 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { createSlice } from "@reduxjs/toolkit";
+import uiSlice from "./Ui-slice";
 
 
 
@@ -26,45 +27,6 @@ const CartSLice = createSlice({
 })
 
 
-// const addSLice = createSlice({
-//   name:"addingitems",
-//     initialstate:{
-//         items:[],
-//         quantity:0,
-//     } ,
-//   reducers:{
-    
-//      addItems(state,action){
-        //     const newitem=action.payload;
-        //    const existing= state.items.find(item=>item.id===newitem.id)
-        //    if(!existing){
-        //     state.items.push({
-        //         itemid:newitem.id,
-        //         price:newitem.price,
-        //         quantity:1,
-        //     })
-        //    }else{
-        //     existing.quantity++
-        //    }
-
-//         },
-//         removeItems(state,action){
-            // const id=action.payload;
-            // const existing= state.items.find(item=>item.id===id)
-            // if(existing.quantity===1){
-            //     state.items=state.items.filter(item=>item.id !== id);
-            // }
-            // else{
-            //     existing.quantity--;
-            // }
-
-//         }
-  
-    
-  
-//   }
-// });
-
 const initialsattae={
 
   items:[],
@@ -73,7 +35,7 @@ const initialsattae={
 
 }
 const Arrayslice = createSlice({
-  name:'theme',
+  name:'adding or removing data',
   initialState:initialsattae,
   reducers:{
     addItems(state,action){
@@ -119,6 +81,7 @@ const store = configureStore({
   reducer: {
     cartitems:Arrayslice.reducer,
     show:CartSLice.reducer,
+    ui:uiSlice.reducer,
    
       
      },
