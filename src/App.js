@@ -6,6 +6,8 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Notification from './components/UI/Notifications';
 
+import { fetchCartData } from './store/GetData';
+
 import { uiActions } from './store/Ui-slice';
 let inital=true;
 
@@ -18,6 +20,12 @@ function App() {
   const cart=useSelector(state=>state.cartitems);
   console.log("FFF",cart)
   const notification=useSelector(state=>state.ui.Notification)
+  useEffect(()=>{
+    console.log("fetching data")
+    dispatch(fetchCartData());
+
+  },[dispatch])
+ 
 
   useEffect(()=>{
     async function GETDATA(){

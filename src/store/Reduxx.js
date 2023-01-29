@@ -38,6 +38,11 @@ const Arrayslice = createSlice({
   name:'adding or removing data',
   initialState:initialsattae,
   reducers:{
+
+    replaceCart(state,action){
+    state.quantity = action.payload.quantity;
+    state.items = action.payload.items
+},
     addItems(state,action){
         state.quantity++;
                    const newitem=action.payload;
@@ -72,7 +77,7 @@ const Arrayslice = createSlice({
     },
    
   }
-})
+});
 
 
 
